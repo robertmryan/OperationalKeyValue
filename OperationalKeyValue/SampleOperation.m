@@ -21,7 +21,6 @@ static NSString * const kExecutingKey = @"isExecuting";
 @synthesize finished  = _finished;
 
 - (void) main {
-
     NSLog(@"starting operation");
 
     // do something asynchronously
@@ -37,7 +36,6 @@ static NSString * const kExecutingKey = @"isExecuting";
 }
 
 - (void) start {
-
     if ([self isCancelled]) {
         [self setFinished:YES];
         return;
@@ -52,18 +50,20 @@ static NSString * const kExecutingKey = @"isExecuting";
     return YES;
 }
 
-- (void)setExecuting:(BOOL)executing
-{
-    [self willChangeValueForKey:kExecutingKey];
-    _executing = executing;
-    [self didChangeValueForKey:kExecutingKey];
+- (void)setExecuting:(BOOL)executing {
+    if (executing != _executing) {
+        [self willChangeValueForKey:kExecutingKey];
+        _executing = executing;
+        [self didChangeValueForKey:kExecutingKey];
+    }
 }
 
-- (void)setFinished:(BOOL)finished
-{
-    [self willChangeValueForKey:kFinishedKey];
-    _finished = finished;
-    [self didChangeValueForKey:kFinishedKey];
+- (void)setFinished:(BOOL)finished {
+    if (finished != _finished) {
+        [self willChangeValueForKey:kFinishedKey];
+        _finished = finished;
+        [self didChangeValueForKey:kFinishedKey];
+    }
 }
 
 /***

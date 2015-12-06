@@ -45,17 +45,12 @@
     [[NSOperationQueue mainQueue] addOperation:sample2];
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
 - (NSKeyValueObservingOptions) observationOptions {
     return (NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld);
 }
 
 - (void) observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
-    if (context == (__bridge void *)self){
+    if (context == (__bridge void *)self) {
         NSLog(@"%@ changed: %@", keyPath, change);
     } else {
         [super observeValueForKeyPath:keyPath ofObject:object change:change context:context];
